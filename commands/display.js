@@ -6,19 +6,23 @@ const path = require("path");
 function display(inputPaths, inputOptions) {
     let output = "";
     let err = "";
+    //loop through all values of inputPaths
     for (const filepath of inputPaths) {
         const absolutePath = path.resolve(filepath);
         if (fs.existsSync(absolutePath)) {
+            // if path exists
             if (fs.lstatSync(absolutePath).isDirectory()) {
+                // if path is directory update error string
                 err += `wcat: ${filepath}: Is a directory\n`;
             } else {
-                output += getData(absolutePath);
+                output += getData(absolutePath); // else update output string
             }
         } else {
-            err += `wcat: ${filepath}: No such file or directory\n`;
+            err += `wcat: ${filepath}: No such file or directory\n`; // if path does't exist, update error string
         }
     }
 
+    // apply options to the output string
     for (const opt of inputOptions) {
         if (opt === "-s") {
             output = removeMultipleBlankLines(output);
@@ -29,6 +33,7 @@ function display(inputPaths, inputOptions) {
         }
     }
 
+    // print output and error in console
     process.stdout.write(output);
     process.stderr.write(err);
 }
