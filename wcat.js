@@ -20,7 +20,7 @@ if (inputOptions.indexOf("-h") >= 0) {
 }
 
 // if no path given
-if (inputPaths.length === 0) {
+if (success && inputPaths.length === 0) {
     console.log(`wcat: no filepath given\nTry 'wcat -h' for more information.`);
     return;
 }
