@@ -69,7 +69,6 @@ function addLineNumber(str) {
     return strArr.join("\n");
 }
 
-// some bug fix needed
 function removeMultipleBlankLines(str) {
     // str = str.replace(/\n\s*\n\s*/, "\n\n");
     let result = "";
@@ -78,7 +77,7 @@ function removeMultipleBlankLines(str) {
         result += str[i];
         if (str[i] == "\n") count++;
 
-        if (count > 2) {
+        if (count == 2) {
             while (i < str.length && str[i] == "\n") i++;
             i--;
             count = 0;
